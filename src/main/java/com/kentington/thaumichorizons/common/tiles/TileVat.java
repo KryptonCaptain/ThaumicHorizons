@@ -201,19 +201,19 @@ public class TileVat extends TileThaumcraft implements IAspectContainer, IEssent
         this.setEntityContained(this.worldObj.getPlayerEntityByName(playerNBT.getString("playerName")));
     }*/
     private void loadContainedEntity(NBTTagCompound EntityNBT) {
-        System.out.println("loadContainedEntity() called, remote: " + worldObj.isRemote);
-        System.out.println("PREPARING TO SPAWN ENTITY IN VAT");
-        System.out.println(entityNBTObj);
+        //System.out.println("loadContainedEntity() called, remote: " + worldObj.isRemote);
+        //System.out.println("PREPARING TO SPAWN ENTITY IN VAT");
+        //System.out.println(entityNBTObj);
         if (EntityNBT.getString("id") != null) {
             if (EntityNBT.getString("id").equals("PLAYER")) {
                 this.setEntityContained(this.worldObj.getPlayerEntityByName(EntityNBT.getString("playerName")));
-                System.out.println("SPAWNED PLAYER IN VAT, WORLD:" + this.worldObj.isRemote);
+                //System.out.println("SPAWNED PLAYER IN VAT, WORLD:" + this.worldObj.isRemote);
             } else if (EntityNBT.hasKey("id")) {//&& !worldObj.isRemote){
 
                 this.setEntityContained((EntityLivingBase) EntityList.createEntityFromNBT(EntityNBT, this.worldObj));
-                System.out.println("SPAWNED ENTITY IN VAT, WORLD:" + this.worldObj.isRemote);
+                //System.out.println("SPAWNED ENTITY IN VAT, WORLD:" + this.worldObj.isRemote);
             } else {
-                System.out.println("VAT WAS EMPTY, AVOIDING NULL ENTITY, WORLD:" + this.worldObj.isRemote);
+                //System.out.println("VAT WAS EMPTY, AVOIDING NULL ENTITY, WORLD:" + this.worldObj.isRemote);
             }
         }
     }
@@ -1188,7 +1188,7 @@ public class TileVat extends TileThaumcraft implements IAspectContainer, IEssent
             else if(nbttagcompound.getCompoundTag("entity").hasKey("id") ){//&& !worldObj.isRemote){
 
                 this.setEntityContained((EntityLivingBase)EntityList.createEntityFromNBT(nbttagcompound.getCompoundTag("entity"), this.worldObj));
-                System.out.println("VAT JUST SPAWNED ENTITY AFTER FIRSTTICK World:" + this.worldObj.isRemote);
+                //System.out.println("VAT JUST SPAWNED ENTITY AFTER FIRSTTICK World:" + this.worldObj.isRemote);
             }
         }
         this.sample = ItemStack.loadItemStackFromNBT(nbttagcompound.getCompoundTag("sample"));
