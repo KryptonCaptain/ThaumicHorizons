@@ -100,10 +100,10 @@ public class LensManager
                 }
                 w.playSoundAtEntity((Entity)player, "thaumcraft:cameraticks", 0.3f, 1.0f);
                 String currentLens = "";
-                if (is.stackTagCompound != null) {
-                    currentLens = is.stackTagCompound.getString("Lens");
+                if (is.stackTagCompound != null) { //checks item for any tags
+                    currentLens = is.stackTagCompound.getString("Lens"); //current lens from NBT
                 }
-                oldLens = getLensItem(currentLens);
+                oldLens = getLensItem(currentLens); //TODO how do I make you not be like this?? code is the same up to here, but how do I allow new lenses?
                 if (!currentLens.equals("") && (addLensToPouch(player, oldLens, pouches) || player.inventory.addItemStackToInventory(oldLens))) {
                     setLensItem(is, item);
                 }
@@ -186,6 +186,7 @@ public class LensManager
         return false;
     }
     
+    //TODO how2fix?
     public static ItemStack getLensItem(final String lens) {
         if (getLens(lens) != null) {
             return new ItemStack(getLens(lens));
