@@ -102,10 +102,11 @@ public class PocketPlaneData {
             vortex.dimensionID = PocketPlaneData.planes.size();
             vortex.createdDimension = true;
             world.setTileEntity(xCenter, yCenter + 1, zCenter,vortex);
-            data.portalA = new int[3];
-            data.portalB = new int[3];
-            data.portalC = new int[3];
-            data.portalD = new int[3];
+            //change array 3 > 4 to account for return dim
+            data.portalA = new int[4];
+            data.portalB = new int[4];
+            data.portalC = new int[4];
+            data.portalD = new int[4];
             PocketPlaneData.planes.add(data);
             PocketPlaneData.positions.put(pocketPlaneMAXID,Vec3.createVectorHelper((double) vortexX, (double) vortexY, (double) vortexZ));
             //System.out.println("Finished with pocket plane generation!");
@@ -1181,19 +1182,20 @@ public class PocketPlaneData {
             e2.printStackTrace();
         }
     }
-
+    
+    //TODO portal frag
     public static int firstAvailablePortal(final int num) {
         final PocketPlaneData data = PocketPlaneData.planes.get(num);
-        if (data.portalA[0] == 0 && data.portalA[1] == 0 && data.portalA[2] == 0) {
+        if (data.portalA[0] == 0 && data.portalA[1] == 0 && data.portalA[2] == 0 /*&& data.portalA[3] == 0*/) {
             return 1;
         }
-        if (data.portalB[0] == 0 && data.portalB[1] == 0 && data.portalB[2] == 0) {
+        if (data.portalB[0] == 0 && data.portalB[1] == 0 && data.portalB[2] == 0 /*&& data.portalB[3] == 0*/) {
             return 2;
         }
-        if (data.portalC[0] == 0 && data.portalC[1] == 0 && data.portalC[2] == 0) {
+        if (data.portalC[0] == 0 && data.portalC[1] == 0 && data.portalC[2] == 0  /*&& data.portalC[3] == 0*/) {
             return 3;
         }
-        if (data.portalD[0] == 0 && data.portalD[1] == 0 && data.portalD[2] == 0) {
+        if (data.portalD[0] == 0 && data.portalD[1] == 0 && data.portalD[2] == 0 /*&& data.portalD[3] == 0*/) {
             return 4;
         }
         return 0;
@@ -1212,6 +1214,7 @@ public class PocketPlaneData {
             data.portalA[0] = 0;
             data.portalA[1] = 0;
             data.portalA[2] = 0;
+            data.portalA[3] = 0;
         } else if (which == 2) {
             for (int x = -1; x <= 1; ++x) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1221,6 +1224,7 @@ public class PocketPlaneData {
             data.portalB[0] = 0;
             data.portalB[1] = 0;
             data.portalB[2] = 0;
+            data.portalB[3] = 0;
         } else if (which == 3) {
             for (int z = -1; z <= 1; ++z) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1230,6 +1234,7 @@ public class PocketPlaneData {
             data.portalC[0] = 0;
             data.portalC[1] = 0;
             data.portalC[2] = 0;
+            data.portalC[3] = 0;
         } else if (which == 4) {
             for (int z = -1; z <= 1; ++z) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1239,10 +1244,11 @@ public class PocketPlaneData {
             data.portalD[0] = 0;
             data.portalD[1] = 0;
             data.portalD[2] = 0;
+            data.portalD[3] = 0;
         }
     }
 
-    public static void makePortal(final int id, final int which, final int xCoord, final int yCoord, final int zCoord) {
+    public static void makePortal(final int id, final int which, final int xCoord, final int yCoord, final int zCoord, final int returnDim) {
         //System.out.println("Creating portal " + which + " in plane " + id);
         final PocketPlaneData data = PocketPlaneData.planes.get(id);
         final World world = (World) MinecraftServer.getServer().worldServerForDimension(ThaumicHorizons.dimensionPocketId);
@@ -1256,6 +1262,7 @@ public class PocketPlaneData {
             data.portalA[0] = xCoord;
             data.portalA[1] = yCoord;
             data.portalA[2] = zCoord;
+            data.portalA[3] = returnDim;
         } else if (which == 2) {
             for (int x = -1; x <= 1; ++x) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1266,6 +1273,7 @@ public class PocketPlaneData {
             data.portalB[0] = xCoord;
             data.portalB[1] = yCoord;
             data.portalB[2] = zCoord;
+            data.portalB[3] = returnDim;
         } else if (which == 3) {
             for (int z = -1; z <= 1; ++z) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1276,6 +1284,7 @@ public class PocketPlaneData {
             data.portalC[0] = xCoord;
             data.portalC[1] = yCoord;
             data.portalC[2] = zCoord;
+            data.portalC[3] = returnDim;
         } else if (which == 4) {
             for (int z = -1; z <= 1; ++z) {
                 for (int y = 126; y <= 128; ++y) {
@@ -1286,6 +1295,7 @@ public class PocketPlaneData {
             data.portalD[0] = xCoord;
             data.portalD[1] = yCoord;
             data.portalD[2] = zCoord;
+            data.portalD[3] = returnDim;
         }
     }
 

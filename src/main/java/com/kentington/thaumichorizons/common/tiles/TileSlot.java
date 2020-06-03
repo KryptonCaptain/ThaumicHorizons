@@ -162,28 +162,32 @@ public class TileSlot extends TileThaumcraft
                         PocketPlaneData.planes.get(this.pocketID).portalA[0] = this.xCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalA[1] = this.yCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalA[2] = this.zCoord;
+                        PocketPlaneData.planes.get(this.pocketID).portalA[3] = this.worldObj.provider.dimensionId;
                         break;
                     }
                     case 2: {
                         PocketPlaneData.planes.get(this.pocketID).portalB[0] = this.xCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalB[1] = this.yCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalB[2] = this.zCoord;
+                        PocketPlaneData.planes.get(this.pocketID).portalB[3] = this.worldObj.provider.dimensionId;
                         break;
                     }
                     case 3: {
                         PocketPlaneData.planes.get(this.pocketID).portalC[0] = this.xCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalC[1] = this.yCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalC[2] = this.zCoord;
+                        PocketPlaneData.planes.get(this.pocketID).portalC[3] = this.worldObj.provider.dimensionId;
                         break;
                     }
                     case 4: {
                         PocketPlaneData.planes.get(this.pocketID).portalD[0] = this.xCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalD[1] = this.yCoord;
                         PocketPlaneData.planes.get(this.pocketID).portalD[2] = this.zCoord;
+                        PocketPlaneData.planes.get(this.pocketID).portalD[3] = this.worldObj.provider.dimensionId;
                         break;
                     }
                 }
-                PocketPlaneData.makePortal(this.pocketID, portalNum, this.xCoord, this.yCoord, this.zCoord);
+                PocketPlaneData.makePortal(this.pocketID, portalNum, this.xCoord, this.yCoord, this.zCoord, this.worldObj.provider.dimensionId);
                 this.which = portalNum;
                 this.portalOpen = true;
                 wand.consumeAllVisCrafting(player.getHeldItem(), player, new AspectList().add(Aspect.WATER, 100).add(Aspect.EARTH, 100).add(Aspect.ORDER, 100).add(Aspect.FIRE, 100).add(Aspect.AIR, 100).add(Aspect.ENTROPY, 100), true);

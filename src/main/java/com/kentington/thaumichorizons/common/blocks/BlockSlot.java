@@ -58,7 +58,7 @@ public class BlockSlot extends BlockContainer
                     tco.destroyPortal();
                 }
             }
-            else if (!tco.portalOpen && player.getHeldItem().getItem() instanceof ItemWandCasting) {
+            else if (!tco.portalOpen && player.getHeldItem().getItem() instanceof ItemWandCasting && player.worldObj.provider.dimensionId != 1) {//don't come through from end. vanilla bug
                 tco.makePortal(player);
             }
         }
